@@ -1,0 +1,86 @@
+/* **********     Reset CSS     ********** */
+
+html {
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    /* Dark Blue (Dark Mode Elements): hsl(209, 23%, 22%)
+- Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
+- Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
+- Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
+- Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
+- White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
+    /* theme 1 */
+    --bg-color: hsl(0, 0%, 98%);
+    --bg-color-element: hsl(0, 0%, 100%) ;
+    --bg-color-input: hsl(0, 0%, 52%);
+    --text-color: hsl(200, 15%, 8%);
+    --icon-bg: brightness(100%);
+
+    /* theme 2
+    --bg-color:  hsl(207, 26%, 17%);
+    --bg-color-element: hsl(209, 23%, 22%);
+    --bg-color-input: hsl(209, 23%, 22%);
+    --text-color: hsl(0, 0%, 100%); */
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+input,
+button {
+    font-family: 'Nunito Sans', sans-serif;
+    border: none;
+    appearance: none;
+    background-color: transparent;
+}
+
+input:focus {
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    margin-block: 0;
+    font-weight: 400;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main{
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}

@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { PaginatedItems } from "../components/PaginatedItems";
-import { useFetch } from "../hooks/useFetch";
+import React, { Component, useState } from "react";
 import { CountryCard } from "../components/CountryCard";
+import { Search } from "../components/Search";
+import { Dropdown } from "../components/DropDown";
+import PaginationElements from "../components/Pagination";
 
-export function Countries(params) {
-  let { data, isLoading, error } = useFetch(
-    "https://restcountries.com/v3.1/all"
-  );
+export function Countries({ setValue, setRegion, countries, page }) {
 
   function RenderItems({ currentItems }) {
     return (
@@ -25,16 +22,12 @@ export function Countries(params) {
   return (
     <section className="countries">
       <div className="countries_top">
-        <h3>Search</h3>
-        <h3>Filter</h3>
+        <Search setValue={setValue} />
+        <Dropdown setValue={setRegion}/>
       </div>
       <div className="countries_main">
-        {data && (
-          <PaginatedItems
-            itemsPerPage={10}
-            items={data}
-            RenderItems={RenderItems}
-          />
+        {countries && (
+          <PaginationElements data={countries} itemsPerPage={10} Render={RenderItems} />
         )}
       </div>
     </section>
