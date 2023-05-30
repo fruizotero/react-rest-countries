@@ -24,8 +24,9 @@ export function useFetch(url) {
                 setIsLoading(false);
                 setError({ err: false });
             } catch (error) {
-                setIsLoading(true);
+                setIsLoading(false);
                 setError(error);
+                console.log(error);
             }
 
 

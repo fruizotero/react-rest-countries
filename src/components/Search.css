@@ -1,3 +1,16 @@
-.search-image-container{
+.search-image-container {
     width: 1.5rem;
+}
+
+.search_image {
+    filter: var(--icon-bg)
+}
+
+.search_input{
+    font-family: var(--font);
+    color: var(--text-color);
+}
+
+.search_input::placeholder{
+    color: var(--text-color);
 }

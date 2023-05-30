@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 
+import "./DropDown.css"
+
 export function Dropdown({ setValue }) {
   const handleOnClick = (e) => {
     let value = e.target.dataset.value;

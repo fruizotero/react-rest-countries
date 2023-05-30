@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { Component, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import { CountryCard } from "../components/CountryCard";
 import { Search } from "../components/Search";
 import { Dropdown } from "../components/DropDown";
 import PaginationElements from "../components/Pagination";
+import { Message } from "../components/Message";
 
-export function Countries({ setValue, setRegion, countries, page }) {
+export function Countries({ setValue, setRegion, data }) {
+  let { dataCountries, isLoading, error } = data;
 
   function RenderItems({ currentItems }) {
     return (
@@ -23,11 +27,27 @@ export function Countries({ setValue, setRegion, countries, page }) {
     <section className="countries">
       <div className="countries_top">
         <Search setValue={setValue} />
-        <Dropdown setValue={setRegion}/>
+        <Dropdown setValue={setRegion} />
       </div>
       <div className="countries_main">
-        {countries && (
-          <PaginationElements data={countries} itemsPerPage={10} Render={RenderItems} />
+        {isLoading ? (
+          <div className="container-spinner">
+            <CircularProgress />
+          </div>
+        ) : (
+          ""
+        )}
+        {dataCountries && (
+          <PaginationElements
+            data={dataCountries}
+            itemsPerPage={10}
+            Render={RenderItems}
+          />
+        )}
+        {error && error.err ? (
+          <Message message={error.statusText} error={error.status} />
+        ) : (
+          ""
         )}
       </div>
     </section>

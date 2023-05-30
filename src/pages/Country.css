@@ -1,0 +1,7 @@
+.country_button_image{
+    filter: var(--icon-bg);
+}
+
+.country_button-goback_text{
+    color: var(--text-color);
+}

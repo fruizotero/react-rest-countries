@@ -14,7 +14,6 @@ function App() {
     "https://restcountries.com/v3.1/all"
   );
   let [dataCountries, setDataCountries] = useState(data);
-  let [page, setPage] = useState(0);
   let countriesCode = {};
 
   useEffect(() => {
@@ -24,6 +23,7 @@ function App() {
         let name = el.name.common;
         let code = el.cca3;
         countriesCode[code] = name;
+        sessionStorage.setItem("codes", JSON.stringify(countriesCode));
       });
       console.log(countriesCode);
     }
@@ -40,7 +40,6 @@ function App() {
     setDataCountries(dataTemp);
 
     if (countrySearch == "") setDataCountries(data);
-    setPage(0);
   }, [countrySearch]);
 
   useEffect(() => {
@@ -54,7 +53,6 @@ function App() {
     setDataCountries(dataTemp);
 
     if (filterRegion == "") setDataCountries(data);
-    setPage(0);
   }, [filterRegion]);
 
   let theme = {
@@ -68,9 +66,8 @@ function App() {
   let countries = (
     <Countries
       setValue={setCountrySearch}
-      setRegion={setFilterRegion}
-      countries={dataCountries}
-      page={page}
+      setRegion={setFilterRegion} 
+      data={{dataCountries, isLoading, error}}
     />
   );
   let country = <Country />;
@@ -81,7 +78,7 @@ function App() {
         <Header theme={isDark} setTheme={setIsDark} />
         <Routes>
           <Route path="/" element={countries}></Route>
-          <Route path="/:name" element={country}></Route>
+          <Route path="/:country" element={country}></Route>
         </Routes>
       </BrowserRouter>
     </main>

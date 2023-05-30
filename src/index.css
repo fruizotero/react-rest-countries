@@ -5,24 +5,14 @@ html {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 16px;
     scroll-behavior: smooth;
-    /* Dark Blue (Dark Mode Elements): hsl(209, 23%, 22%)
-- Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
-- Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
-- Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
-- Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
-- White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
+    
     /* theme 1 */
     --bg-color: hsl(0, 0%, 98%);
     --bg-color-element: hsl(0, 0%, 100%) ;
     --bg-color-input: hsl(0, 0%, 52%);
     --text-color: hsl(200, 15%, 8%);
     --icon-bg: brightness(100%);
-
-    /* theme 2
-    --bg-color:  hsl(207, 26%, 17%);
-    --bg-color-element: hsl(209, 23%, 22%);
-    --bg-color-input: hsl(209, 23%, 22%);
-    --text-color: hsl(0, 0%, 100%); */
+    --font: 'Nunito Sans', sans-serif;
 }
 
 *,
@@ -53,7 +43,7 @@ video {
 
 input,
 button {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: var(--font);
     border: none;
     appearance: none;
     background-color: transparent;

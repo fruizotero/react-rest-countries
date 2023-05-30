@@ -1,0 +1,14 @@
+
+.pagination .MuiButtonBase-root,
+.pagination .MuiPaginationItem-ellipsis
+{
+    
+    /* width: 100%; */
+    color: var(--text-color);
+    background-color: var(--bg-color-element);
+
+}
+
+.pagination .Mui-selected{
+    background-color: hsl(208, 55%, 81%)!important; 
+}
