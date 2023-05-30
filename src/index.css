@@ -9,7 +9,7 @@ html {
     /* theme 1 */
     --bg-color: hsl(0, 0%, 98%);
     --bg-color-element: hsl(0, 0%, 100%) ;
-    --bg-color-input: hsl(0, 0%, 52%);
+    --text-color-input: hsl(0, 0%, 52%);
     --text-color: hsl(200, 15%, 8%);
     --icon-bg: brightness(100%);
     --font: 'Nunito Sans', sans-serif;
@@ -73,4 +73,9 @@ body {
     min-height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+
+.container-spinner{
+    display: flex;
+    justify-content: center;
 }

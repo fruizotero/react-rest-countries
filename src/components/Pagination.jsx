@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { Pagination} from "@mui/material";
+import { Pagination } from "@mui/material";
 
 import "./Pagination.css";
 
 const PaginationElements = ({ data, itemsPerPage, Render }) => {
   const [page, setPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
-
- 
 
   useEffect(() => {
     setPage(1);
@@ -25,14 +23,15 @@ const PaginationElements = ({ data, itemsPerPage, Render }) => {
 
   return (
     <article className="pagination-container">
-      {<Render currentItems={paginatedData} />}
-        <Pagination className="pagination"
-        
-          count={Math.ceil(data.length / itemsPerPage)}
-          page={page}
-          onChange={handleChange}
-        />
-      
+      <div className="pagination_items">
+        {<Render currentItems={paginatedData} />}
+      </div>
+      <Pagination
+        className="pagination"
+        count={Math.ceil(data.length / itemsPerPage)}
+        page={page}
+        onChange={handleChange}
+      />
     </article>
   );
 };

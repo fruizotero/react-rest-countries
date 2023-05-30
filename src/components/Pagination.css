@@ -1,14 +1,41 @@
-
+/* Material Ui Styles */
 .pagination .MuiButtonBase-root,
-.pagination .MuiPaginationItem-ellipsis
-{
-    
-    /* width: 100%; */
+.pagination .MuiPaginationItem-ellipsis {
+
     color: var(--text-color);
     background-color: var(--bg-color-element);
 
 }
 
-.pagination .Mui-selected{
-    background-color: hsl(208, 55%, 81%)!important; 
+.pagination .Mui-selected {
+    background-color: hsl(208, 55%, 81%) !important;
+}
+
+/* Material Ui Styles */
+
+
+
+.pagination_items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pagination {
+    flex: 0 0 auto;
+    flex-grow: 1;
+    width: 100%;
+}
+
+@media screen and (min-width:32rem) {
+
+    .pagination_items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+        gap: 2rem;
+        padding: 0;
+    }
 }

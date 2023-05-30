@@ -9,6 +9,8 @@ import { Dropdown } from "../components/DropDown";
 import PaginationElements from "../components/Pagination";
 import { Message } from "../components/Message";
 
+import "./Countries.css";
+
 export function Countries({ setValue, setRegion, data }) {
   let { dataCountries, isLoading, error } = data;
 
@@ -40,7 +42,7 @@ export function Countries({ setValue, setRegion, data }) {
         {dataCountries && (
           <PaginationElements
             data={dataCountries}
-            itemsPerPage={10}
+            itemsPerPage={8}
             Render={RenderItems}
           />
         )}

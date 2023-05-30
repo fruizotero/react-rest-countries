@@ -1,0 +1,24 @@
+.country{
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.5rem; */
+    background-color: var(--bg-color-element);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.country_flag_image{
+   height: 12rem;
+   object-fit: cover;
+}
+
+.country_info{
+    padding: 1rem;
+}
+
+@media screen and (min-width:32rem) {
+    
+    .country{
+    }
+    
+}

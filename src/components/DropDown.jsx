@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 
-import "./DropDown.css"
+import "./DropDown.css";
 
 export function Dropdown({ setValue }) {
+  let [hidden, setHidden] = useState(true);
+  let pathArrowRight = "src/assets/chevron-right.svg";
+  let pathArrowDown = "src/assets/chevron-down.svg";
+
+  const handleToggleMenu = (e) => setHidden(!hidden);
+
   const handleOnClick = (e) => {
     let value = e.target.dataset.value;
     setValue(value);
@@ -12,10 +18,15 @@ export function Dropdown({ setValue }) {
 
   return (
     <div className="dropdown">
-      <button className="dropdown-toggle">
-        <span className="dropdown-toggle-text">Filter By Region</span>
+      <button className="dropdown-toggle" onClick={handleToggleMenu}>
+        <span className="dropdown-toggle-text">Filter by Region</span>
+        <div className="dropdow_image-conainer">
+          <img src={hidden? pathArrowRight:pathArrowDown} alt="Icon arrow" className="dropdown_image" />
+          </div>
       </button>
-      <ul className="dropdown-menu">
+      <ul
+        className={`dropdown-menu ${hidden && "hidden"}`}
+      >
         <li>
           <button
             className="menu-button"

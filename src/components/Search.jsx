@@ -41,14 +41,14 @@ export function Search({ setValue }) {
 
   return (
     <div className="search">
-      <div className="search-image-container">
+      <button onClick={handleOnclick} className="search_button">
         <img
           src="src/assets/search.svg"
           alt="icon search"
           className="search_image"
-          onClick={handleOnclick}
+          
         />
-      </div>
+      </button>
       <input
         type="text"
         className="search_input"

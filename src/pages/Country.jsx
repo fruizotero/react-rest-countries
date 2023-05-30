@@ -62,7 +62,7 @@ export function Country() {
   };
 
   return (
-    <article className="country">
+    <article className="country_page">
       <div className="country_top">
         <button className="country_button-goback" onClick={handleGoBack}>
           <div className="country_button_image_container">
@@ -90,12 +90,12 @@ export function Country() {
                 <img
                   src={details.flags.svg ?? details.flags.png}
                   alt={details.flags.alt}
-                  className="country_flag_image"
+                  className="country_page_flag_image"
                 />
               </div>
             </div>
             <div className="country_bottom_right">
-              <h2 className="country_name">
+              <h2 className="country_page_name">
                 {details.name.common ?? "Unknown"}
               </h2>
               <div className="country_details">

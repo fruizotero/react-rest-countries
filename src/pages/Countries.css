@@ -1,0 +1,29 @@
+.countries{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+}
+
+.countries_top{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+
+
+
+@media screen and (min-width:32rem) {
+
+    .countries{
+        padding: 2rem 5%;
+    }
+
+    .countries_top{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+    }
+}

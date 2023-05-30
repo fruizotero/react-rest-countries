@@ -58,7 +58,7 @@ function App() {
   let theme = {
     "--bg-color": isDark ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
     "--bg-color-element": isDark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
-    "--bg-color-input": isDark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 52%)",
+    "--text-color-input": isDark ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 52%)",
     "--text-color": isDark ? "hsl(0, 0%, 100%)" : "hsl(200, 15%, 8%)",
     "--icon-bg": isDark ? "brightness(0) invert(1)" : "brightness(100%)",
   };
