@@ -5,6 +5,7 @@
     background-color: var(--bg-color-element);
     border-radius: 0.5rem;
     overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 .country_flag_image{

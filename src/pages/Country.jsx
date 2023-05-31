@@ -8,7 +8,7 @@ import { useFetch } from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { Message } from "../components/Message";
 
-import "./Country.css"
+import "./Country.css";
 
 export function Country() {
   let { country } = useParams();
@@ -150,12 +150,15 @@ export function Country() {
               </div>
               <div className="country_borders">
                 <h3 className="country_borders_title">Border Countries:</h3>
-                {details.borders &&
-                  details.borders.map((el, index) => (
-                    <Link key={index} to={`/${countriesCode[el]}`}>
-                      {countriesCode[el]}
-                    </Link>
-                  ))}
+                <div className="country_borders_links">
+                  {details.borders &&
+                    details.borders.map((el, index) => (
+                      <Link key={index} to={`/${countriesCode[el]}`} 
+                      className="country_border_link" >
+                        {countriesCode[el]}
+                      </Link>
+                    ))}
+                </div>
               </div>
             </div>
           </div>{" "}

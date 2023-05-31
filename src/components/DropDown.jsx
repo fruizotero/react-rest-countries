@@ -20,8 +20,13 @@ export function Dropdown({ setValue }) {
     handleToggleMenu();
   };
 
-  //TODO::Refactorizar
-  
+  let regions = [
+    { value: "africa", text: "Africa" },
+    { value: "americas", text: "America" },
+    { value: "asia", text: "Asia" },
+    { value: "europe", text: "Europe" },
+    { value: "oceania", text: "Oceania" },
+  ];
   return (
     <div className="dropdown">
       <button className="dropdown-toggle" onClick={handleToggleMenu}>
@@ -35,56 +40,24 @@ export function Dropdown({ setValue }) {
         </div>
       </button>
       <ul className={`dropdown-menu ${hidden && "hidden"}`}>
-        <li>
-          <button
-            data-key="1"
-            className={`menu-button ${key == "1" ? "active" : ""}`}
-            data-value="africa"
-            onClick={handleOnClick}
-          >
-            Africa
-          </button>
-        </li>
-        <li>
-          <button
-            data-key="2"
-            className={`menu-button ${key == "2" ? "active" : ""}`}
-            data-value="americas"
-            onClick={handleOnClick}
-          >
-            America
-          </button>
-        </li>
-        <li>
-          <button
-            data-key="3"
-            className={`menu-button ${key == "3" ? "active" : ""}`}
-            data-value="asia"
-            onClick={handleOnClick}
-          >
-            Asia
-          </button>
-        </li>
-        <li>
-          <button
-            data-key="4"
-            className={`menu-button ${key == "4" ? "active" : ""}`}
-            data-value="europe"
-            onClick={handleOnClick}
-          >
-            Europe
-          </button>
-        </li>
-        <li>
-          <button
-            data-key="5"
-            className={`menu-button ${key == "5" ? "active" : ""}`}
-            data-value="oceania"
-            onClick={handleOnClick}
-          >
-            Oceania
-          </button>
-        </li>
+        
+        {regions.map((el, index) => {
+          let { value, text } = el;
+          let keyElement= index.toString();
+          return (
+            <li key={keyElement}>
+              <button
+                data-key={keyElement}
+                className={`menu-button ${key == keyElement ? "active" : ""}`}
+                data-value={value}
+                onClick={handleOnClick}
+              >
+                {text}
+              </button>
+            </li>
+          );
+        })}
+       
       </ul>
     </div>
   );

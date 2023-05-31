@@ -33,10 +33,17 @@
 @media screen and (min-width:32rem) {
 
     .pagination_items {
-        --minmax: minmax(20%, 1fr);
         display: grid;
-        grid-template-columns: repeat(auto-fit, var(--minmax));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2.5rem;
         padding: 0;
+    }
+}
+
+@media screen and (min-width:64rem){
+    .pagination_items {
+        --minmax: minmax(20%, 1fr);
+        grid-template-columns: repeat(auto-fit, var(--minmax));
+
     }
 }

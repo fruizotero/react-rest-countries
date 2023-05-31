@@ -34,7 +34,7 @@ function App() {
 
     let dataTemp = [...data].filter((el) => {
       let name = el.name.common.toLowerCase();
-      return name.includes(countrySearch);
+      return name.includes(countrySearch.toLowerCase());
     });
 
     setDataCountries(dataTemp);
