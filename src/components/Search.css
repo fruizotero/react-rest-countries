@@ -19,6 +19,8 @@
 }
 
 .search_input{
+    flex: 0 0 auto;
+    width: 80%;
     font-family: var(--font);
     color: var(--text-color);
 }

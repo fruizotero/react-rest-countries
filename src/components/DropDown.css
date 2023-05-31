@@ -16,15 +16,15 @@
     border-radius: 0.25rem;
 }
 
-.dropdown-toggle:hover{
+.dropdown-toggle:hover {
     cursor: pointer;
 }
 
-.dropdow_image-conainer{
+.dropdow_image-conainer {
     width: 0.75rem;
 }
 
-.dropdown_image{
+.dropdown_image {
     filter: var(--icon-bg);
 }
 
@@ -57,14 +57,19 @@
     background-color: rgba(111, 168, 168, .25);
 }
 
+.active{
+    background-color: rgba(111, 168, 168, .25);
+}
+
 .hidden {
+    z-index: -1;
     opacity: 0;
     visibility: 0;
     transition: all 0.3s ease-in-out;
 }
 
 @media screen and (min-width:32rem) {
-    .dropdown{
+    .dropdown {
         max-width: 100%;
     }
 }

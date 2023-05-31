@@ -19,11 +19,17 @@ const PaginationElements = ({ data, itemsPerPage, Render }) => {
     const begin = (value - 1) * itemsPerPage;
     const end = begin + itemsPerPage;
     setPaginatedData(data.slice(begin, end));
+    window.scrollTo(0,0);
+  };
+
+  let style = {
+    "--minmax":
+      paginatedData.length > 3 ? " minmax(20%, 1fr)" : " minmax(20%, 25%)",
   };
 
   return (
     <article className="pagination-container">
-      <div className="pagination_items">
+      <div className="pagination_items" style={style}>
         {<Render currentItems={paginatedData} />}
       </div>
       <Pagination

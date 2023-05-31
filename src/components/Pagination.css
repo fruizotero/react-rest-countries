@@ -33,8 +33,9 @@
 @media screen and (min-width:32rem) {
 
     .pagination_items {
+        --minmax: minmax(20%, 1fr);
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+        grid-template-columns: repeat(auto-fit, var(--minmax));
         gap: 2rem;
         padding: 0;
     }

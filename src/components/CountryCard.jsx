@@ -12,6 +12,14 @@ export function CountryCard({ data }) {
   let { common } = name;
   let [cap] = capital ?? "-";
 
+  let style={
+    padding:"1rem",
+    paddingTop:"0rem",
+    color:"var(--text-color)",
+    fontWeight:"bold",
+    textDecoration:"underline"
+  };
+
   return (
     <article className="country">
       <div className="country_flag">
@@ -41,7 +49,7 @@ export function CountryCard({ data }) {
         </div>
       </div>
 
-      <Link to={`/${name.common}`} style={{padding:"1rem"}}>More Details</Link>
+      <Link to={`/${name.common}`} style={style}>More Details</Link>
     </article>
   );
 }
