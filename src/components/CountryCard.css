@@ -1,4 +1,4 @@
-.country{
+.country {
     display: flex;
     flex-direction: column;
     /* gap: 0.5rem; */
@@ -8,42 +8,49 @@
     box-shadow: var(--shadow);
 }
 
-.country_flag_image{
-   height: 12rem;
-   object-fit: cover;
+.country_flag_image {
+    height: 12rem;
+    object-fit: cover;
 }
 
-.country_info{
+.country_info {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
 }
 
-.country_info_name{
+.country_info_name {
     font-size: 1.25rem;
     font-weight: 800;
 
 }
 
-.country_info_details{
+.country_info_details {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
-.country_info_detail{
+.country_info_detail {
     display: flex;
     gap: 0.25rem;
 }
 
-.country_info_title{
+.country_info_title {
     font-weight: 600;
 }
 
+.country_link_details {
+    padding: 1rem;
+    padding-top: 0rem;
+    color: var(--text-color);
+    font-weight: bold;
+    text-decoration: underline
+}
+
 @media screen and (min-width:32rem) {
-    
-    .country{
-    }
-    
+
+    .country {}
+
 }

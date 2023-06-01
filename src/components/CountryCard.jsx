@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import "./CountryCard.css";
-import styled from "styled-components";
 
 export function CountryCard({ data }) {
   let { name, population, region, capital, flags } = data;
@@ -12,13 +11,6 @@ export function CountryCard({ data }) {
   let { common } = name;
   let [cap] = capital ?? "-";
 
-  let style={
-    padding:"1rem",
-    paddingTop:"0rem",
-    color:"var(--text-color)",
-    fontWeight:"bold",
-    textDecoration:"underline"
-  };
 
   return (
     <article className="country">
@@ -49,7 +41,7 @@ export function CountryCard({ data }) {
         </div>
       </div>
 
-      <Link to={`/${name.common}`} style={style}>More Details</Link>
+      <Link to={`/${name.common}`} className="country_link_details">More Details</Link>
     </article>
   );
 }

@@ -21,6 +21,7 @@ export function Dropdown({ setValue }) {
   };
 
   let regions = [
+    { value: "", text: "All" },
     { value: "africa", text: "Africa" },
     { value: "americas", text: "America" },
     { value: "asia", text: "Asia" },
