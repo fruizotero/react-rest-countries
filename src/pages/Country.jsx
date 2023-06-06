@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -8,14 +9,15 @@ import { useFetch } from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { Message } from "../components/Message";
 
+import arrowLeftIcon from "../assets/arrow-left.svg";
+
 import "./Country.css";
 
-export function Country() {
+export function Country({ codes }) {
   let { country } = useParams();
   let navigate = useNavigate();
   let url = `https://restcountries.com/v3.1/name/`;
   let { data, isLoading, error } = useFetch(`${url}${country}`);
-  let countriesCode = JSON.parse(sessionStorage.getItem("codes"));
 
   let details = {
     name: data && data[0].name,
@@ -32,7 +34,10 @@ export function Country() {
 
   const handleGoBack = () => navigate(-1);
   const nativeName = () => {
+    if (!details.name.nativeName) return;
+
     let key, value;
+
     Object.entries(details.name.nativeName ?? {}).forEach((entry) => {
       key = entry[0];
       value = entry[1];
@@ -67,7 +72,7 @@ export function Country() {
         <button className="country_button-goback" onClick={handleGoBack}>
           <div className="country_button_image_container">
             <img
-              src="src/assets/arrow-left.svg"
+              src={arrowLeftIcon}
               alt="Icon go back"
               className="country_button_image"
             />
@@ -134,9 +139,11 @@ export function Country() {
                     <span className="country_detail_title">
                       Top Level Domain:
                     </span>
-                    <span className="country_detail_value">
-                      {details.tld[0] ?? "Unknown"}
-                    </span>
+                    {details.tld && (
+                      <span className="country_detail_value">
+                        {details.tld[0] ?? "Unknown"}
+                      </span>
+                    )}
                   </p>
                   <p className="country_detail">
                     <span className="country_detail_title">Currencies:</span>
@@ -150,15 +157,20 @@ export function Country() {
               </div>
               <div className="country_borders">
                 <h3 className="country_borders_title">Border Countries:</h3>
-                <div className="country_borders_links">
-                  {details.borders &&
-                    details.borders.map((el, index) => (
-                      <Link key={index} to={`/${countriesCode[el]}`} 
-                      className="country_border_link" >
-                        {countriesCode[el]}
-                      </Link>
-                    ))}
-                </div>
+                {codes && (
+                  <div className="country_borders_links">
+                    {details.borders &&
+                      details.borders.map((el, index) => (
+                        <Link
+                          key={index}
+                          to={`/country/${codes[el]}`}
+                          className="country_border_link"
+                        >
+                          {codes[el]}
+                        </Link>
+                      ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>{" "}

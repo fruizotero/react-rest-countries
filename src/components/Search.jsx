@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import "./Search.css"; 
+import searchIcon from '../assets/search.svg';
 
 export function Search({ setValue }) {
   let [search, setSearch] = useState("");
@@ -43,7 +44,7 @@ export function Search({ setValue }) {
     <div className="search">
       <button onClick={handleOnclick} className="search_button">
         <img
-          src="src/assets/search.svg"
+          src={searchIcon}
           alt="icon search"
           className="search_image"
           

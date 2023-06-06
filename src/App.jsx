@@ -1,31 +1,38 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Header } from "./components/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import { Countries } from "./pages/Countries";
 import { Country } from "./pages/Country";
 import { useFetch } from "./hooks/useFetch";
+import { codes } from "./helpers/codesCountries";
 
 function App() {
   let [countrySearch, setCountrySearch] = useState("");
+  let [codesCountries, setCodesCountries] = useState(null);
   let [filterRegion, setFilterRegion] = useState("");
   let [isDark, setIsDark] = useState(false);
   let { data, isLoading, error } = useFetch(
     "https://restcountries.com/v3.1/all"
   );
   let [dataCountries, setDataCountries] = useState(data);
-  let countriesCode = {};
+  // let countriesCode = {};
 
   useEffect(() => {
     if (data) {
-      setDataCountries(data);
-      data.forEach((el) => {
-        let name = el.name.common;
-        let code = el.cca3;
-        countriesCode[code] = name;
-        sessionStorage.setItem("codes", JSON.stringify(countriesCode));
+      let tempData = data.sort((a, b) => {
+        if (a.name.common > b.name.common) {
+          return 1; // retorna 1 si quieres orden descendente
+        } else if (a.name.common < b.name.common) {
+          return -1; // retorna -1 si quieres orden descendente
+        } else {
+          return 0;
+        }
       });
-      console.log(countriesCode);
+
+      setDataCountries(tempData);
+      // sessionStorage.setItem("codes", JSON.stringify(codes(data)));
+      setCodesCountries(codes(data));
     }
   }, [data]);
 
@@ -66,21 +73,24 @@ function App() {
   let countries = (
     <Countries
       setValue={setCountrySearch}
-      setRegion={setFilterRegion} 
-      data={{dataCountries, isLoading, error}}
+      setRegion={setFilterRegion}
+      data={{ dataCountries, isLoading, error }}
     />
   );
-  let country = <Country />;
+  let country = <Country codes={codesCountries} />;
 
   return (
     <main className="main" style={theme}>
-      <BrowserRouter>
+      <HashRouter>
         <Header theme={isDark} setTheme={setIsDark} />
         <Routes>
           <Route path="/" element={countries}></Route>
-          <Route path="/:country" element={country}></Route>
+          <Route path="/country/:country" element={country}></Route>
+          <Route path="*" element={countries} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
+      {/* <BrowserRouter>
+      </BrowserRouter> */}
     </main>
   );
 }

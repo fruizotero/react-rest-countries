@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import arrowRightIcon from "../assets/chevron-right.svg";
+import arrowDownIcon from "../assets/chevron-down.svg";
 
 import "./DropDown.css";
 
 export function Dropdown({ setValue }) {
   let [hidden, setHidden] = useState(true);
   let [key, setKey] = useState("");
-  let pathArrowRight = "src/assets/chevron-right.svg";
-  let pathArrowDown = "src/assets/chevron-down.svg";
 
   const handleToggleMenu = () => setHidden(!hidden);
 
@@ -34,7 +34,7 @@ export function Dropdown({ setValue }) {
         <span className="dropdown-toggle-text">Filter by Region</span>
         <div className="dropdow_image-conainer">
           <img
-            src={hidden ? pathArrowRight : pathArrowDown}
+            src={hidden ? arrowRightIcon : arrowDownIcon}
             alt="Icon arrow"
             className="dropdown_image"
           />

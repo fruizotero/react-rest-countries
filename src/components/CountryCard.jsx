@@ -11,7 +11,6 @@ export function CountryCard({ data }) {
   let { common } = name;
   let [cap] = capital ?? "-";
 
-
   return (
     <article className="country">
       <div className="country_flag">
@@ -22,7 +21,9 @@ export function CountryCard({ data }) {
         />
       </div>
       <div className="country_info">
-        <h4 className="country_info_name">{common}</h4>
+        <h4 className="country_info_name">
+          {common.length > 15 ? `${common.substring(0, 15)}...` : common}
+        </h4>
         <div className="country_info_details">
           <div className="country_info_detail">
             <p className="country_info_title">Population:</p>
@@ -34,14 +35,14 @@ export function CountryCard({ data }) {
           </div>
           <div className="country_info_detail">
             <p className="country_info_title">Capital:</p>
-            <p className="country_info_value">
-              {cap}
-            </p>
+            <p className="country_info_value">{cap}</p>
           </div>
         </div>
       </div>
 
-      <Link to={`/${name.common}`} className="country_link_details">More Details</Link>
+      <Link to={`/country/${name.common}`} className="country_link_details">
+        More Details
+      </Link>
     </article>
   );
 }
