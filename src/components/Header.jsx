@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { Component, useContext } from "react";
+
 import { ButtonTheme } from "./ButtonTheme";
+import ThemeContext from "../context/ThemeContext";
 
 import "./Header.css";
-import ThemeContext from "../context/ThemeContext";
 
 export function Header() {
   let {isDark, setIsDark}=useContext(ThemeContext);

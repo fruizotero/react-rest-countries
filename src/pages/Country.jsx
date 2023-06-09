@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,8 +12,10 @@ import { Message } from "../components/Message";
 import arrowLeftIcon from "../assets/arrow-left.svg";
 
 import "./Country.css";
+import SearchContext from "../context/SearchContext";
 
-export function Country({ codes }) {
+export function Country() {
+  let { codesCountries } = useContext(SearchContext);
   let { country } = useParams();
   let navigate = useNavigate();
   let url = `https://restcountries.com/v3.1/name/`;
@@ -157,16 +159,16 @@ export function Country({ codes }) {
               </div>
               <div className="country_borders">
                 <h3 className="country_borders_title">Border Countries:</h3>
-                {codes && (
+                {codesCountries && (
                   <div className="country_borders_links">
                     {details.borders &&
                       details.borders.map((el, index) => (
                         <Link
                           key={index}
-                          to={`/country/${codes[el]}`}
+                          to={`/country/${codesCountries[el]}`}
                           className="country_border_link"
                         >
-                          {codes[el]}
+                          {codesCountries[el]}
                         </Link>
                       ))}
                   </div>

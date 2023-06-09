@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component } from "react";
-import { useState } from "react";
-import "./Search.css"; 
-import searchIcon from '../assets/search.svg';
+import React, { Component, useContext, useState } from "react";
 
-export function Search({ setValue }) {
+import SearchContext from "../context/SearchContext";
+
+import searchIcon from "../assets/search.svg";
+
+import "./Search.css";
+
+export function Search() {
+
+  let {setIsSearch, setStringSearch}=useContext(SearchContext);
   let [search, setSearch] = useState("");
-
-  let validateString = (string) => {
-    let regExp = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/gi;
-
-    return regExp.test(string);
-  };
 
   let handleOnChange = (e) => {
     let value = e.target.value;
@@ -21,34 +20,27 @@ export function Search({ setValue }) {
   };
 
   let handleOnclick = () => {
-    if (validateString(search)) {
-      setValue(search);
-    } else {
-      console.log("Valor no válido");
-    }
+
+    if (search == "") return;
+
+    setIsSearch(true);
+    setStringSearch(search);
   };
+
   let handleOnKeyUp = (e) => {
 
-    if(search==""){
-        setValue(search);
-    }
+    if (search == "") return;
 
     if (e.keyCode == 13) {
-      setValue(search);
-    } else {
-      console.log("Valor no válido");
+      setIsSearch(true);
+      setStringSearch(search);
     }
   };
 
   return (
     <div className="search">
       <button onClick={handleOnclick} className="search_button">
-        <img
-          src={searchIcon}
-          alt="icon search"
-          className="search_image"
-          
-        />
+        <img src={searchIcon} alt="icon search" className="search_image" />
       </button>
       <input
         type="text"

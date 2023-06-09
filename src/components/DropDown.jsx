@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import SearchContext from "../context/SearchContext";
+
 import arrowRightIcon from "../assets/chevron-right.svg";
 import arrowDownIcon from "../assets/chevron-down.svg";
 
 import "./DropDown.css";
 
-export function Dropdown({ setValue }) {
+export function Dropdown() {
+
+  let {setIsSearch, setStringSearch}=useContext(SearchContext);
   let [hidden, setHidden] = useState(true);
   let [key, setKey] = useState("");
 
@@ -16,7 +20,9 @@ export function Dropdown({ setValue }) {
     let buttonKey = e.target.dataset.key;
     setKey(buttonKey);
     let value = e.target.dataset.value;
-    setValue(value);
+    setIsSearch(false);
+    // setValue(value);
+    setStringSearch(value)
     handleToggleMenu();
   };
 

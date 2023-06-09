@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, useState } from "react";
+import React, { Component, useContext, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { CountryCard } from "../components/CountryCard";
@@ -8,12 +8,13 @@ import { Search } from "../components/Search";
 import { Dropdown } from "../components/DropDown";
 import PaginationElements from "../components/Pagination";
 import { Message } from "../components/Message";
+import SearchContext from "../context/SearchContext";
 
 import "./Countries.css";
 
-export function Countries({ setValue, setRegion, data }) {
+export function Countries() {
+  let { data } = useContext(SearchContext);
   let { dataCountries, isLoading, error } = data;
-
   function RenderItems({ currentItems }) {
     return (
       <>
@@ -28,8 +29,8 @@ export function Countries({ setValue, setRegion, data }) {
   return (
     <section className="countries">
       <div className="countries_top">
-        <Search setValue={setValue} />
-        <Dropdown setValue={setRegion} />
+        <Search />
+        <Dropdown />
       </div>
       <div className="countries_main">
         {isLoading ? (
