@@ -6,12 +6,13 @@ import { Countries } from "./pages/Countries";
 import { Country } from "./pages/Country";
 import { useFetch } from "./hooks/useFetch";
 import { codes } from "./helpers/codesCountries";
+import { Main } from "./components/Main";
+import ThemeContext, { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   let [countrySearch, setCountrySearch] = useState("");
   let [codesCountries, setCodesCountries] = useState(null);
   let [filterRegion, setFilterRegion] = useState("");
-  let [isDark, setIsDark] = useState(false);
   let { data, isLoading, error } = useFetch(
     "https://restcountries.com/v3.1/all"
   );
@@ -62,14 +63,6 @@ function App() {
     if (filterRegion == "") setDataCountries(data);
   }, [filterRegion]);
 
-  let theme = {
-    "--bg-color": isDark ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
-    "--bg-color-element": isDark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
-    "--text-color-input": isDark ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 52%)",
-    "--text-color": isDark ? "hsl(0, 0%, 100%)" : "hsl(200, 15%, 8%)",
-    "--icon-bg": isDark ? "brightness(0) invert(1)" : "brightness(100%)",
-  };
-
   let countries = (
     <Countries
       setValue={setCountrySearch}
@@ -80,18 +73,20 @@ function App() {
   let country = <Country codes={codesCountries} />;
 
   return (
-    <main className="main" style={theme}>
-      <HashRouter>
-        <Header theme={isDark} setTheme={setIsDark} />
-        <Routes>
-          <Route path="/" element={countries}></Route>
-          <Route path="/country/:country" element={country}></Route>
-          <Route path="*" element={countries} />
-        </Routes>
-      </HashRouter>
-      {/* <BrowserRouter>
+    <ThemeProvider>
+      <Main>
+        <HashRouter>
+          <Header  />
+          <Routes>
+            <Route path="/" element={countries}></Route>
+            <Route path="/country/:country" element={country}></Route>
+            <Route path="*" element={countries} />
+          </Routes>
+        </HashRouter>
+        {/* <BrowserRouter>
       </BrowserRouter> */}
-    </main>
+      </Main>
+    </ThemeProvider>
   );
 }
 
