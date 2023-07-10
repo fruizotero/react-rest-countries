@@ -5,23 +5,26 @@ import { Countries } from "./pages/Countries";
 import { Country } from "./pages/Country";
 import { Main } from "./components/Main";
 import { ThemeProvider } from "./context/ThemeContext";
-import { SearchProvider } from "./context/SearchContext";
+import { useDispatch } from "react-redux";
+import { fetchData } from "./redux/features/filterSlice";
+import { useEffect } from "react";
 
 function App() {
-  
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchData("https://restcountries.com/v3.1/all"));
+  }, []);
   return (
     <ThemeProvider>
       <Main>
         <HashRouter>
           <Header />
-          <SearchProvider>
             <Routes>
-              <Route path="/" element={<Countries/>}></Route>
-              <Route path="/country/:country" element={<Country/>}></Route>
-              <Route path="*" element={<Countries/>} />
+              <Route path="/" element={<Countries />}></Route>
+              <Route path="/country/:country" element={<Country />}></Route>
+              <Route path="*" element={<Countries />} />
             </Routes>
-          </SearchProvider>
         </HashRouter>
         {/* <BrowserRouter>
       </BrowserRouter> */}

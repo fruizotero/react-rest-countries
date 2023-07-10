@@ -1,28 +1,31 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from "react";
-import SearchContext from "../context/SearchContext";
+import React, {useState } from "react";
 
 import arrowRightIcon from "../assets/chevron-right.svg";
 import arrowDownIcon from "../assets/chevron-down.svg";
 
 import "./DropDown.css";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../redux/features/filterSlice";
 
 export function Dropdown() {
-
-  let {setIsSearch, setStringSearch}=useContext(SearchContext);
   let [hidden, setHidden] = useState(true);
   let [key, setKey] = useState("");
+
+  let dispatch = useDispatch();
 
   const handleToggleMenu = () => setHidden(!hidden);
 
   const handleOnClick = (e) => {
+
     let buttonKey = e.target.dataset.key;
+
     setKey(buttonKey);
+
     let value = e.target.dataset.value;
-    setIsSearch(false);
-    // setValue(value);
-    setStringSearch(value)
+
+    dispatch(setFilter({ name: "", region: value, filterByName: false }));
     handleToggleMenu();
   };
 
@@ -47,10 +50,9 @@ export function Dropdown() {
         </div>
       </button>
       <ul className={`dropdown-menu ${hidden && "hidden"}`}>
-        
         {regions.map((el, index) => {
           let { value, text } = el;
-          let keyElement= index.toString();
+          let keyElement = index.toString();
           return (
             <li key={keyElement}>
               <button
@@ -64,7 +66,6 @@ export function Dropdown() {
             </li>
           );
         })}
-       
       </ul>
     </div>
   );

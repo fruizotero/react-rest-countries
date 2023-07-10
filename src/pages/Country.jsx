@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,10 +11,13 @@ import { Message } from "../components/Message";
 import arrowLeftIcon from "../assets/arrow-left.svg";
 
 import "./Country.css";
-import SearchContext from "../context/SearchContext";
+import { useSelector } from "react-redux";
+import { selectCodes } from "../redux/features/filterSlice";
 
 export function Country() {
-  let { codesCountries } = useContext(SearchContext);
+
+  let codesCountries = useSelector(selectCodes);
+
   let { country } = useParams();
   let navigate = useNavigate();
   let url = `https://restcountries.com/v3.1/name/`;
@@ -35,6 +37,7 @@ export function Country() {
   };
 
   const handleGoBack = () => navigate(-1);
+
   const nativeName = () => {
     if (!details.name.nativeName) return;
 

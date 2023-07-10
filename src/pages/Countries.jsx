@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, useContext, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { CountryCard } from "../components/CountryCard";
@@ -8,13 +7,23 @@ import { Search } from "../components/Search";
 import { Dropdown } from "../components/DropDown";
 import PaginationElements from "../components/Pagination";
 import { Message } from "../components/Message";
-import SearchContext from "../context/SearchContext";
 
 import "./Countries.css";
+import { useSelector } from "react-redux";
+import { selectData, selectStatus } from "../redux/features/filterSlice";
+import { STATUSREQUEST } from "../redux/features/status";
 
 export function Countries() {
-  let { data } = useContext(SearchContext);
-  let { dataCountries, isLoading, error } = data;
+
+  let data = useSelector(selectData);
+  let status = useSelector(selectStatus);
+  let error = {
+    err: true,
+    statusText: "Ocurrió un error",
+    status: "",
+  };
+
+
   function RenderItems({ currentItems }) {
     return (
       <>
@@ -33,21 +42,21 @@ export function Countries() {
         <Dropdown />
       </div>
       <div className="countries_main">
-        {isLoading ? (
+        {status == STATUSREQUEST.PENDING ? (
           <div className="container-spinner">
             <CircularProgress />
           </div>
         ) : (
           ""
         )}
-        {dataCountries && (
+        {data && (
           <PaginationElements
-            data={dataCountries}
+            data={data}
             itemsPerPage={8}
             Render={RenderItems}
           />
         )}
-        {error && error.err ? (
+        {status == STATUSREQUEST.FAILED && error.err ? (
           <Message message={error.statusText} error={error.status} />
         ) : (
           ""

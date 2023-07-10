@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, useContext, useState } from "react";
-
-import SearchContext from "../context/SearchContext";
+import React, { useState } from "react";
 
 import searchIcon from "../assets/search.svg";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../redux/features/filterSlice";
 
 import "./Search.css";
 
 export function Search() {
-
-  let {setIsSearch, setStringSearch}=useContext(SearchContext);
   let [search, setSearch] = useState("");
+
+  let dispatch = useDispatch();
 
   let handleOnChange = (e) => {
     let value = e.target.value;
@@ -20,20 +20,15 @@ export function Search() {
   };
 
   let handleOnclick = () => {
-
     if (search == "") return;
-
-    setIsSearch(true);
-    setStringSearch(search);
+    dispatch(setFilter({ name: search, region: "", filterByName: true }));
   };
 
   let handleOnKeyUp = (e) => {
-
     if (search == "") return;
 
     if (e.keyCode == 13) {
-      setIsSearch(true);
-      setStringSearch(search);
+      dispatch(setFilter({ name: search, region: "", filterByName: true }));
     }
   };
 
