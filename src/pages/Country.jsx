@@ -13,6 +13,7 @@ import arrowLeftIcon from "../assets/arrow-left.svg";
 import "./Country.css";
 import { useSelector } from "react-redux";
 import { selectCodes } from "../redux/features/filterSlice";
+import ButtonGlobal from "../components/ButtonGlobal";
 
 export function Country() {
 
@@ -74,16 +75,9 @@ export function Country() {
   return (
     <article className="country_page">
       <div className="country_top">
-        <button className="country_button-goback" onClick={handleGoBack}>
-          <div className="country_button_image_container">
-            <img
-              src={arrowLeftIcon}
-              alt="Icon go back"
-              className="country_button_image"
-            />
-          </div>
-          <span className="country_button-goback_text">Back</span>
-        </button>
+
+      <ButtonGlobal label={"Go back"} actions={handleGoBack}  icon={arrowLeftIcon}/>
+
       </div>
       {isLoading ? (
         <div className="container-spinner">
